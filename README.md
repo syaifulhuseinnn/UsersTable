@@ -17,7 +17,17 @@ Yesterday I got challanged from big transportation company in Indonesia for Fron
 
 # Development
 
-## 1. Analysis
+## 1. Install Dependencies
+
+We only have one third-party dependency. We only have **Chakra UI**. Run command below to install:
+
+```shell
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+
+Read complete installation and setup on [https://chakra-ui.com/getting-started](https://chakra-ui.com/getting-started)
+
+## 2. Analysis
 
 Before start the development, I need to take a look or identify what data is needed and what data need to store in state. Here the results:
 
