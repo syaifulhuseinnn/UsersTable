@@ -23,5 +23,5 @@ Before start the development, I need to take a look or identify what data is nee
 
 Analysis finished. Here the results:
 
-1. I need dummy user data. I can get the data from [](https://dummyjson.com/users)
+1. I need dummy user data. I can get the data from [https://dummyjson.com/users](https://dummyjson.com/users)
 2. I need to store `user`, `filterUser`, `limit`, `sortby`, `total`, `keyword` into state.
