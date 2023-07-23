@@ -21,7 +21,7 @@ Yesterday I got challanged from big transportation company in Indonesia for Fron
 
 We only have one third-party dependency. We only have **Chakra UI**. Run command below to install:
 
-```shell
+```bash
 npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 ```
 
