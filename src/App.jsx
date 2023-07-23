@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import {
   Heading,
   Container,
@@ -22,12 +22,13 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  Spinner,
-  Center,
   Text,
+  HStack,
 } from '@chakra-ui/react';
+import { InfoIcon } from '@chakra-ui/icons';
 import initialState from './state';
 import reducer from './reducer';
+import SkeletonLoader from './SkeletonLoader';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -57,15 +58,6 @@ function App() {
     dispatch({ type: 'SET_SORT_BY', payload: payload });
   };
 
-  const handleIncrementLimit = () => {
-    dispatch({ type: 'INCREMENT_LIMIT', payload: 1 });
-  };
-
-  const handleDecrementLimit = (e) => {
-    console.log('call!');
-    // dispatch({ type: 'DECREMENT_LIMIT', payload: 1 });
-  };
-
   useEffect(() => {
     getUsers();
   }, []);
@@ -77,34 +69,35 @@ function App() {
   }, [state.keyword]);
 
   if (state.users.length < 1) {
-    return (
-      <Center h="100vh">
-        <Spinner size="xl" color="teal.500" />
-      </Center>
-    );
+    return <SkeletonLoader />;
   }
+
   const usersRow = state.keyword
-    ? state.filterUsers.users.slice(0, state.limit).map((user) => (
-        <Tr key={user.id}>
-          <Td>{`U-${user.id}`}</Td>
-          <Td>{user.firstName}</Td>
-          <Td>{user.lastName}</Td>
-          <Td>{user.age}</Td>
-          <Td>{user.email}</Td>
-        </Tr>
-      ))
-    : state.users.users.slice(0, state.limit).map((user) => (
-        <Tr key={user.id}>
-          <Td>{`U-${user.id}`}</Td>
-          <Td>{user.firstName}</Td>
-          <Td>{user.lastName}</Td>
-          <Td>{user.age}</Td>
-          <Td>{user.email}</Td>
-        </Tr>
-      ));
+    ? state.filterUsers.users.slice(0, state.limit).map((user) => {
+        return (
+          <Tr key={user.id}>
+            <Td>{`U-${user.id}`}</Td>
+            <Td>{user.firstName}</Td>
+            <Td>{user.lastName}</Td>
+            <Td>{user.age}</Td>
+            <Td>{user.email}</Td>
+          </Tr>
+        );
+      })
+    : state.users.users.slice(0, state.limit).map((user) => {
+        return (
+          <Tr key={user.id}>
+            <Td>{`U-${user.id}`}</Td>
+            <Td>{user.firstName}</Td>
+            <Td>{user.lastName}</Td>
+            <Td>{user.age}</Td>
+            <Td>{user.email}</Td>
+          </Tr>
+        );
+      });
 
   return (
-    <Container maxWidth="container.lg">
+    <Container maxWidth="container.lg" py={4}>
       <Heading textAlign="center">Users</Heading>
       <Stack>
         <FormControl>
@@ -116,7 +109,12 @@ function App() {
             onChange={(e) => handleSearchUser(e.target.value)}
           />
           <FormHelperText>
-            You can search user by First Name, Last Name, and Email Address
+            <HStack>
+              <InfoIcon />
+              <span>
+                You can search user by First Name, Last Name, and Email Address
+              </span>
+            </HStack>
           </FormHelperText>
         </FormControl>
         <FormControl>
@@ -132,9 +130,7 @@ function App() {
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />
-              <NumberDecrementStepper
-                onClick={(e) => handleDecrementLimit(e)}
-              />
+              <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
         </FormControl>
@@ -159,7 +155,7 @@ function App() {
       <TableContainer mt={6}>
         <Text>Total: {state.total}</Text>
         <Table variant="striped" colorScheme="teal">
-          <TableCaption>Users</TableCaption>
+          <TableCaption>User Accounts</TableCaption>
           <Thead>
             <Tr>
               <Th>ID</Th>

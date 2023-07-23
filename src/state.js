@@ -1,6 +1,6 @@
 const initialState = {
   users: [],
-  filterUsers: { users: [] },
+  filterUsers: [],
   keyword: '',
   limit: 5,
   total: 0,
