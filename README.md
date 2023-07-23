@@ -39,4 +39,18 @@ Before start the development, I need to take a look or identify what data is nee
 
 #### 1. Declare initial state
 
-Lorem
+I will create a new file called `state.js` and write initial state on it.
+
+```javascript
+const initialState = {
+  users: [],
+  filterUsers: [],
+  keyword: '',
+  limit: 5,
+  total: 0,
+  sortBy: ['id', 'ascending'],
+};
+
+export default initialState;
+
+```
