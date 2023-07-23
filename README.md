@@ -14,3 +14,14 @@ Yesterday I got challanged from big transportation company in Indonesia for Fron
 2. Chakra UI
 3. useReducer
 4. useEffect
+
+# Development
+
+## 1. Analysis
+
+Before start the development, I need to take a look or identify what data is needed and what data need to store in state.
+
+Analysis finished. Here the results:
+
+1. I need dummy user data. I can get the data from [dummyjson.com](https://dummyjson.com/users)
+2. I need to store `user`, `filterUser`, `limit`, `sortby`, `total`, `keyword` into state.
