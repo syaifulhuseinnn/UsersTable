@@ -17,7 +17,7 @@ Yesterday I got challanged from big transportation company in Indonesia for Fron
 
 # Development
 
-## 1. Install Dependencies
+### 1. Install Dependencies
 
 We only have one third-party dependency. We only have **Chakra UI**. Run command below to install:
 
@@ -27,10 +27,16 @@ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 Read complete installation and setup on [https://chakra-ui.com/getting-started](https://chakra-ui.com/getting-started)
 
-## 2. Analysis
+### 2. Analyze
 
 Before start the development, I need to take a look or identify what data is needed and what data need to store in state. Here the results:
 
 1. I need dummy user data. I can get the data from [https://dummyjson.com/users](https://dummyjson.com/users)
 2. I need to store `user`, `filterUser`, `limit`, `sortby`, `total`, `keyword` into state.
 3. Because all states connected each other, I decided to use `useReducer`. Why? Because we can update one or multiple states at once in one event. It's easy to manage states using `useReducer` instead of `useState`. If you have ever use Redux, you will understand reducer.
+
+### 3. Start Development
+
+#### 1. Declare initial state
+
+Lorem
