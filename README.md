@@ -54,3 +54,12 @@ const initialState = {
 export default initialState;
 
 ```
+
+Let's elaborate each state!
+
+- users: store dummy users data got from [https://dummyjson.com/users](https://dummyjson.com/users)
+- filterUsers: will store filtered users from `users` state. I will explain why we need this state in next section.
+- keyword: store value of search input field.
+- limit: store limit number, how many users showed in table. Default value is 5.
+- total: store number of users got from [https://dummyjson.com/users](https://dummyjson.com/users). Default value is 0.
+- sortBy: store `sort by` combination. Default value is `id` with `ascending`
