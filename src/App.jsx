@@ -36,8 +36,12 @@ function App() {
   const toastIdRef = useRef();
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const showToast = () => {
-    toastIdRef.current = toast({ description: 'some text' });
+  const showToast = (message) => {
+    toastIdRef.current = toast({
+      title: 'Error',
+      description: message,
+      status: 'error',
+    });
   };
 
   const getUsers = async () => {
@@ -46,7 +50,8 @@ function App() {
       const dataUsers = await response.json();
       dispatch({ type: 'SET_USERS', payload: dataUsers });
     } catch (error) {
-      showToast();
+      console.error(error?.message);
+      showToast(error.message);
     }
   };
 
