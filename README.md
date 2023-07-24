@@ -139,9 +139,17 @@ function reducer(state, action) {
 }
 ```
 
-#### 2. Fetch Dummy Users Data
+#### 3. Declare useReducer hook
 
-Let's write request code to fetch dummy users data. I will use native network call in JavaScript, `fetch`. There is no consideration why I'm using `fetch`, it just because this only simple project.
+Open `App.js` and declare `useReducer` hook. `useReducer` need two parameters, `reducer` function and `initialState`. `useReducer` will return `state` and `dispatch` function. I can get the return value using array destructuring.
+
+```javascript
+const [state, dispatch] = useReducer(reducer, initialState);
+```
+
+#### 4. Fetch Dummy Users Data
+
+Let's write request code to fetch dummy users data. I will use native network call in JavaScript, `fetch`. There is no consideration why I'm using `fetch`, it just because this only simple project. Open `App.js` and put code below on it.
 
 ```javascript
 const getUsers = async () => {
