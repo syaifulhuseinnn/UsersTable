@@ -69,10 +69,9 @@ Let's elaborate each state!
 Because I will use `useReducer` so I need to create a reducer. I create a new file called `reducer.js` and put code below on it.
 
 > Remember! a reducer function will receive two paramaters. It's `state` and `action`.
->
-> **_state_**: current state condition.
->
-> **_action_**: an object contain `type` and `payload` properties. `type` is a command name, we will tell to reducer function which instruction should run. `payload` contain data, what data we will send to reducer function.
+
+- **_state_**: current state condition.
+- **_action_**: an object contain `type` and `payload` properties. `type` is a command name, we will tell to reducer function which instruction should run. `payload` contain data, what data we will send to reducer function.
 
 Because reducer will receive various command, it's easier to write and read multiple conditions using `switch...case`.
 
