@@ -162,3 +162,11 @@ const getUsers = async () => {
   }
 };
 ```
+
+Next, I can call the `getUsers` function inside `useEffect` hook. It will fetch dummy users data when first load, because I don't add any dependencies.
+
+```javascript
+useEffect(() => {
+  getUsers();
+}, []);
+```
