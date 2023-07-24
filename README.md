@@ -37,7 +37,7 @@ Before start the development, I need to take a look or identify what data is nee
 
 ### 3. Start Development
 
-#### 1. Declare initial state
+#### 1. Declare Initial State
 
 I will create a new file called `state.js` and write initial state on it.
 
@@ -63,3 +63,91 @@ Let's elaborate each state!
 - **_limit_**: store limit number, how many users showed in table. Default value is 5.
 - **_total_**: store number of users got from [https://dummyjson.com/users](https://dummyjson.com/users). Default value is 0.
 - **_sortBy_**: store `sort by` combination. Default value is `id` with `ascending`
+
+#### 2. Setup Reducer
+
+Because I will use `useReducer` so I need to create a reducer. I create a new file called `reducer.js` and put code below on it.
+
+> Remember! a reducer function will receive two paramaters. It's `state` and `action`.
+>
+> **_state_**: current state condition.
+> **_action_**: an object contain `type` and `payload` properties. `type` is a command name, we will tell to reducer function which instruction should run. `payload` contain data, what data we will send to reducer function.
+
+Because reducer will receive various command, it's easier to write and read multiple conditions using `switch...case`.
+
+**\_SET\__USERS_**
+Lorem
+
+```javascript
+function reducer(state, action) {
+  switch (action.type) {
+    case 'SET_USERS':
+      return {
+        ...state,
+        users: action.payload,
+        filterUsers: action.payload,
+        total: action.payload.users.length,
+      };
+    case 'SET_KEYWORD':
+      if (action.payload === '') {
+        return {
+          ...state,
+          keyword: action.payload,
+          filterUsers: state.users,
+          limit: 5,
+          total: state.users.users.length,
+        };
+      }
+
+      return { ...state, keyword: action.payload };
+    case 'SET_FILTER_USERS':
+      const keywordToLower = action.payload.toLowerCase();
+      const filterUsers = setFilterUsers(state, keywordToLower);
+
+      return {
+        ...state,
+        filterUsers: { ...state.filterUsers, users: filterUsers },
+        limit: filterUsers.length,
+        total: filterUsers.length,
+      };
+    case 'SET_LIMIT':
+      return { ...state, limit: action.payload };
+    case 'SET_SORT_BY':
+      const { column, order } = action.payload;
+      const sortUsers = setSortBy(state, column, order);
+
+      if (state.keyword) {
+        return {
+          ...state,
+          filterUsers: { ...state.filterUsers, users: sortUsers },
+          sortBy: [column, order],
+        };
+      }
+
+      return {
+        ...state,
+        users: { ...state.users, users: sortUsers },
+        sortBy: [column, order],
+      };
+
+    default:
+      return state;
+  }
+}
+```
+
+#### 2. Fetch Dummy Users Data
+
+Let's write request code to fetch dummy users data. I will use native network call in JavaScript, `fetch`. There is no consideration why I'm using `fetch`, it just because this only simple project.
+
+```javascript
+const getUsers = async () => {
+    try {
+      const response = await fetch('https://dummyjson.com/users');
+      const dataUsers = await response.json();
+      dispatch({ type: 'SET_USERS', payload: dataUsers });
+    } catch (error) {
+      showToast(error.message);
+    }
+  };
+```
