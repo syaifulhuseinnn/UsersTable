@@ -151,6 +151,8 @@ const [state, dispatch] = useReducer(reducer, initialState);
 
 Let's write request code to fetch dummy users data. I will use native network call in JavaScript, `fetch`. There is no consideration why I'm using `fetch`, it just because this only simple project. Open `App.js` and put code below on it.
 
+Once we success get dummy users data, we can call `SET_USERS` in reducer function bring `type` and `payload` using `dispatch` function. I will send dummy users data to reducer function, so the reducer function can update the state with proper data.
+
 ```javascript
 const getUsers = async () => {
   try {
@@ -169,4 +171,25 @@ Next, I can call the `getUsers` function inside `useEffect` hook. It will fetch 
 useEffect(() => {
   getUsers();
 }, []);
+```
+
+#### 5. Handle Events
+
+I create functions to handle each event.
+
+```javascript
+const handleSearchUser = (value) =>
+  dispatch({ type: 'SET_KEYWORD', payload: value });
+
+const handleLimit = (value) => {
+  dispatch({ type: 'SET_LIMIT', payload: Number(value) });
+};
+
+const handleSortBy = (e) => {
+  const [column, order] = state.sortBy;
+  const payload = { column: column, order: order };
+  payload[e.target.name] = e.target.value;
+
+  dispatch({ type: 'SET_SORT_BY', payload: payload });
+};
 ```
