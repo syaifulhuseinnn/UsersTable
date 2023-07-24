@@ -50,7 +50,6 @@ function App() {
       const dataUsers = await response.json();
       dispatch({ type: 'SET_USERS', payload: dataUsers });
     } catch (error) {
-      console.error(error?.message);
       showToast(error.message);
     }
   };
