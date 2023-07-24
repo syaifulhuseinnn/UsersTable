@@ -205,3 +205,39 @@ useEffect(() => {
   }
 }, [state.keyword]);
 ```
+
+#### 7. Conditional Rendering
+
+Remember I have two states, `users` and `filterUsers`. When visitor type the keyword into search user input field, it will filter `users` state and store the result into `filterUsers` state.
+
+_Why I don't store the result into `users` state?_
+
+When keyword is empty I want to show users in table same as when first load. If I store the result into `users` state, we can't get the original users data anymore because the users already filtered. That's why I store the result into `filterUsers` state.
+
+If I want to show users same as when first load, I just need to render from `users` state. If I want to show filtered users, I just need to render from `filterUsers` state.
+
+```javascript
+const usersRow = state.keyword
+  ? state.filterUsers.users.slice(0, state.limit).map((user) => {
+      return (
+        <Tr key={user.id}>
+          <Td>{`U-${user.id}`}</Td>
+          <Td>{user.firstName}</Td>
+          <Td>{user.lastName}</Td>
+          <Td>{user.age}</Td>
+          <Td>{user.email}</Td>
+        </Tr>
+      );
+    })
+  : state.users.users.slice(0, state.limit).map((user) => {
+      return (
+        <Tr key={user.id}>
+          <Td>{`U-${user.id}`}</Td>
+          <Td>{user.firstName}</Td>
+          <Td>{user.lastName}</Td>
+          <Td>{user.age}</Td>
+          <Td>{user.email}</Td>
+        </Tr>
+      );
+    });
+```
