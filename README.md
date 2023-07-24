@@ -77,6 +77,8 @@ Because I will use `useReducer` so I need to create a reducer. I create a new fi
 Because reducer will receive various command, it's easier to write and read multiple conditions using `switch...case`.
 
 - **_SETUSERS_**: handle to update `users` and `filterUsers` state once we get dummy users data from API, fill `users` and `filterUsers` states with dummy user data got from API. And update `total` state with how much data to get.
+- **_SETKEYWORD_**: handle keyword typing by visitor. Every visitor type the keyword, it will update `keyword` state. I add conditional statement. If keyword is empty, update `filterUsers` state to the first condition when `SET_USERS` run. The value same as with `users` state.
+- **_SETFILTERUSERS_**: this case have relationship with `SET_KEYWORD`. Every visitor type the keyword it will trigger filter function to find user match with the keyword. I write `setFilterUsers` outside reducer function, you can check complete code on repository.
 
 ```javascript
 function reducer(state, action) {
@@ -142,12 +144,12 @@ Let's write request code to fetch dummy users data. I will use native network ca
 
 ```javascript
 const getUsers = async () => {
-    try {
-      const response = await fetch('https://dummyjson.com/users');
-      const dataUsers = await response.json();
-      dispatch({ type: 'SET_USERS', payload: dataUsers });
-    } catch (error) {
-      showToast(error.message);
-    }
-  };
+  try {
+    const response = await fetch('https://dummyjson.com/users');
+    const dataUsers = await response.json();
+    dispatch({ type: 'SET_USERS', payload: dataUsers });
+  } catch (error) {
+    showToast(error.message);
+  }
+};
 ```
