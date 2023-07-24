@@ -241,3 +241,9 @@ const usersRow = state.keyword
       );
     });
 ```
+
+### 4. Review
+
+I've learned how to handle states in a good way from this project. Although I still feel annoyed why did I can't finish the test yesterday😩
+
+Hopefully next opportunity I can more relax so I can solve the problems easier😉
