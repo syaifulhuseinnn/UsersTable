@@ -73,11 +73,13 @@ Because I will use `useReducer` so I need to create a reducer. I create a new fi
 - **_state_**: current state condition.
 - **_action_**: an object contain `type` and `payload` properties. `type` is a command name, we will tell to reducer function which instruction should run. `payload` contain data, what data we will send to reducer function.
 
-Because reducer will receive various command, it's easier to write and read multiple conditions using `switch...case`.
+Because reducer will receive various commands, it's easier to write and read multiple conditions using `switch...case`.
 
-- **_SETUSERS_**: handle to update `users` and `filterUsers` state once we get dummy users data from API, fill `users` and `filterUsers` states with dummy user data got from API. And update `total` state with how much data to get.
+- **_SETUSERS_**: handle to update `users` and `filterUsers` state once we get dummy users data from API, fill `users` and `filterUsers` states with dummy users data got from API. And update `total` state with how much data to get.
 - **_SETKEYWORD_**: handle keyword typing by visitor. Every visitor type the keyword, it will update `keyword` state. I add conditional statement. If keyword is empty, update `filterUsers` state to the first condition when `SET_USERS` run. The value same as with `users` state.
 - **_SETFILTERUSERS_**: this case have relationship with `SET_KEYWORD`. Every visitor type the keyword it will trigger filter function to find user match with the keyword. I write `setFilterUsers` outside reducer function, you can check complete code on repository.
+- **_SETLIMIT_**: handle `limit` state. Limit will use for slice the dummy user data.
+- **_SETSORTBY_**: handle combination of **Sort By**. It will receive `column` and `order` in action payload. The sorting will process in `setSortBy` function. Add conditional statement, if keyword is not empty, the sorting will update `filterUsers` state.
 
 ```javascript
 function reducer(state, action) {
