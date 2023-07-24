@@ -193,3 +193,15 @@ const handleSortBy = (e) => {
   dispatch({ type: 'SET_SORT_BY', payload: payload });
 };
 ```
+
+#### 6. Handle Filter Users
+
+Look at the previous section, there is no dispatch for `SET_FILTER_USERS`. I add dispatch `SET_FILTER_USERS` in side effect using `useEffect` hook and add state `keyword` as dependecy. The objective is when state `keyword` is not empty or means visitor type keyword into search user input field, it will automatically trigger filter users function. That's why I add state `keyword` as dependecy, because I want the `useEffect` hook listen state `keyword` every time it changes.
+
+```javascript
+useEffect(() => {
+  if (state.keyword) {
+    dispatch({ type: 'SET_FILTER_USERS', payload: state.keyword });
+  }
+}, [state.keyword]);
+```
