@@ -210,7 +210,7 @@ useEffect(() => {
 
 Remember I have two states, `users` and `filterUsers`. When visitor type the keyword into search user input field, it will filter `users` state and store the result into `filterUsers` state.
 
-_Why I don't store the result into `users` state?_
+> _Why I don't store the result into `users` state?_
 
 When keyword is empty I want to show users in table same as when first load. If I store the result into `users` state, we can't get the original users data anymore because the users already filtered. That's why I store the result into `filterUsers` state.
 
