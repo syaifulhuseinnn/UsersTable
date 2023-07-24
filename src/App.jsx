@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useRef, useEffect, useReducer } from 'react';
 import {
   Heading,
   Container,
@@ -24,6 +24,7 @@ import {
   TableContainer,
   Text,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 import { InfoIcon } from '@chakra-ui/icons';
 import initialState from './state';
@@ -31,15 +32,21 @@ import reducer from './reducer';
 import SkeletonLoader from './SkeletonLoader';
 
 function App() {
+  const toast = useToast();
+  const toastIdRef = useRef();
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const showToast = () => {
+    toastIdRef.current = toast({ description: 'some text' });
+  };
 
   const getUsers = async () => {
     try {
-      const response = await fetch('https://dummyjson.com/users');
+      const response = await fetch('http://httpstat.us/500');
       const dataUsers = await response.json();
       dispatch({ type: 'SET_USERS', payload: dataUsers });
     } catch (error) {
-      console.log(error);
+      showToast();
     }
   };
 
