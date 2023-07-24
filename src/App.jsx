@@ -46,7 +46,7 @@ function App() {
 
   const getUsers = async () => {
     try {
-      const response = await fetch('http://httpstat.us/500');
+      const response = await fetch('https://dummyjson.com/users');
       const dataUsers = await response.json();
       dispatch({ type: 'SET_USERS', payload: dataUsers });
     } catch (error) {
